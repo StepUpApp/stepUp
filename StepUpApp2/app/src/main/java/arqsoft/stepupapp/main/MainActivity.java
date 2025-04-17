@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private Ubicacion ubicacionActiva;
     private Partida partidaActiva;
     private List<Partida> listaPartidas;
+    double lat;
+    double lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +85,17 @@ public class MainActivity extends AppCompatActivity {
         btnIniciarPartida.setClickable(false);
         // Configura el listener del botón Guardar Ubicación (si lo necesitas)
         btnGuardarUbicacion.setOnClickListener(view -> {
-            Toast.makeText(this, "Guardar ubicación actual", Toast.LENGTH_SHORT).show();
-            // Implementa la lógica para persistir la ubicación si es necesario
+            if (lat != 0 && lng != 0) {
+                Intent intent = new Intent(MainActivity.this, GuardarUbicacionActivity.class);
+
+                intent.putExtra("LATITUD", lat);
+                intent.putExtra("LONGITUD", lng);
+
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Las coordenadas no están disponibles", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
         // Listener para iniciar partida manualmente
@@ -208,8 +219,8 @@ public class MainActivity extends AppCompatActivity {
      * Si no, se muestran las coordenadas y se habilita el botón de guardar.
      */
     private void procesarUbicacion(Location location) {
-        double lat = location.getLatitude();
-        double lng = location.getLongitude();
+        lat = location.getLatitude();
+        lng = location.getLongitude();
         Ubicacion ubicacionEncontrada = buscarUbicacionRegistrada(lat, lng);
 
         if (ubicacionEncontrada != null) {

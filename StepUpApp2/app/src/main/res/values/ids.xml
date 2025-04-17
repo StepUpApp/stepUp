@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textViewLatitud" type="id" />
+    <item name="textViewLongitud" type="id" />
+    <item name="editTextNombreUbicacion" type="id" />
+    <item name="imageViewUbicacion" type="id" />
+    <item name="btnCamera" type="id" />
+</resources>
