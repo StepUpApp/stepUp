@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivUbicacion;
     private Button btnGuardarUbicacion, btnDetenerPartida, btnIniciarPartida;
     private FusedLocationProviderClient fusedLocationClient;
-    private Controlador controlador = Controlador.getInstance();
+    private Controlador controlador;
     private Chronometer chronometerTiempo;
     private Ubicacion ubicacionActiva;
     private Partida partidaActiva;
@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.myToolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        controlador = ((LayerApplication)getApplicationContext()).getControler();
 
         // Inicia el cronómetro
         chronometerTiempo = findViewById(R.id.chronometerTiempo);
@@ -91,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("LATITUD", lat);
                 intent.putExtra("LONGITUD", lng);
 
-                startActivity(intent);
+                startActivityForResult(intent, 1);
+
             } else {
                 Toast.makeText(this, "Las coordenadas no están disponibles", Toast.LENGTH_SHORT).show();
             }
@@ -157,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnUbicacionesRegistradas.setOnClickListener(view -> {
             // Navegar a UbicacionesActivity (ubicaciones registradas)
+            for (Ubicacion u : controlador.listarUbicaciones()) {
+                Log.d("UbicacionRegistrada", "Nombre: " + u.getNombre() + ", lat: " + u.getLatitud() + ", lon: " + u.getLongitud());
+            }
             Intent intentUbicaciones = new Intent(MainActivity.this, UbicacionesActivity.class);
             startActivity(intentUbicaciones);
         });
@@ -301,4 +308,44 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error: La imagen no existe en assets", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("Aqui","Dentro de activity result");
+     
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            // Vuelves de UbicacionesActivity, refrescas la ubicación
+            Log.d("Aqui","Dentro de sii");
+            actualizarUbicacion();
+        }
+    }
+
+    private void actualizarUbicacion() {
+        // Supongamos que solo quieres mostrar la última ubicación
+        Ubicacion ultima = controlador.listarUbicaciones().get(controlador.listarUbicaciones().size() - 1);
+        Log.d("Aqui","Dentro de actualizar");
+        Log.d("Aqui",ultima.getNombre());
+
+        tvUbicacionActual.setText("Estás en: " + ultima.getNombre());
+        btnGuardarUbicacion.setEnabled(false);
+        btnIniciarPartida.setEnabled(true);   // Se habilita iniciar partida
+        btnDetenerPartida.setEnabled(false);
+
+        ubicacionActiva = ultima;
+        // Nota: No iniciamos la partida automáticamente; se espera que el usuario
+        // presione el botón de iniciar. Así se puede controlar la coexistencia
+        // de partidas.
+
+        String nombreImagen = ultima.getImagen();
+        if (nombreImagen == null || nombreImagen.isEmpty()) {
+            Toast.makeText(this, "Imagen no registrada para esta ubicación", Toast.LENGTH_SHORT).show();
+            //ivUbicacion.setImageResource(android.R.color.transparent);
+            //ivUbicacion.setImageResource(R.drawable.paisaje);
+            cargarImagenFromAssets("paisaje.png");
+        } else {
+            cargarImagenFromAssets(nombreImagen);
+        }
+    }
+
 }

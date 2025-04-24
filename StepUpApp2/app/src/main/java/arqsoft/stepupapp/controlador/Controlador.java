@@ -1,5 +1,7 @@
 package arqsoft.stepupapp.controlador;
 
+import android.util.Log;
+
 import dao.*;
 import modelo.*;
 import java.text.SimpleDateFormat;
@@ -12,24 +14,32 @@ public class Controlador {
 
     private static Controlador instance;
 
-    private UbicacionDAO ubicacionDAO;
-    private EjercicioDAO ejercicioDAO;
-    private PartidaDAO partidaDAO;
-    private UsuarioDAO usuarioDAO;
+    private UbicacionDAOInterface ubicacionDAO;
+    private EjercicioDAOInterface ejercicioDAO;
+    private PartidaDAOInterface partidaDAO;
+    private UsuarioDAOInterface usuarioDAO;
 
-    public Controlador() {
+    public Controlador(UbicacionDAOInterface ubicacionDAO,
+                       EjercicioDAOInterface ejercicioDAO,
+                       PartidaDAOInterface partidaDAO,
+                       UsuarioDAOInterface usuarioDAO) {
         // Instanciación de los DAO
-        this.ubicacionDAO = new UbicacionDAO();
-        this.ejercicioDAO = new EjercicioDAO();
-        this.partidaDAO = new PartidaDAO();
-        this.usuarioDAO = new UsuarioDAO();
+        this.ubicacionDAO = ubicacionDAO;
+        this.ejercicioDAO = ejercicioDAO;
+        this.partidaDAO = partidaDAO;
+        this.usuarioDAO = usuarioDAO;
 
+        Log.e("Instancia","Nueva Indstancia");
         crearDatosIniciales();
     }
 
-    public static synchronized Controlador getInstance() {
+    public static synchronized Controlador getInstance(UbicacionDAOInterface ubicacionDAO,
+                                                       EjercicioDAOInterface ejercicioDAO,
+                                                       PartidaDAOInterface partidaDAO,
+                                                       UsuarioDAOInterface usuarioDAO) {
         if (instance == null) {
-            instance = new Controlador();
+
+            instance = new Controlador(ubicacionDAO,ejercicioDAO,partidaDAO,usuarioDAO);
         }
         return instance;
     }

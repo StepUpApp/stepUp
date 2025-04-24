@@ -29,7 +29,7 @@ public class UsuariosActivity extends AppCompatActivity implements UsuarioAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuarios);
 
-        controlador = Controlador.getInstance();
+        controlador = ((LayerApplication)getApplicationContext()).getControler();
         inicializarVistas();
         configurarBotones();
         cargarUsuarios();

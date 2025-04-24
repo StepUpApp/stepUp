@@ -87,9 +87,10 @@ public class GuardarUbicacionActivity extends AppCompatActivity {
 
             // Crear la ubicación
             Ubicacion nuevaUbicacion = new Ubicacion(nombre, lat, lon, imageFileName);
-            arqsoft.stepupapp.controlador.Controlador.getInstance().crearUbicacion(nuevaUbicacion);
+            ((LayerApplication)getApplicationContext()).getControler().crearUbicacion(nuevaUbicacion);
 
             Toast.makeText(this, "Ubicación guardada con éxito", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
             finish();
 
         });

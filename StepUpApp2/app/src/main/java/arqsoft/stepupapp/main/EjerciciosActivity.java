@@ -32,7 +32,7 @@ public class EjerciciosActivity extends AppCompatActivity implements EjercicioAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ejercicios);
 
-        controlador = Controlador.getInstance();
+        controlador = ((LayerApplication)getApplicationContext()).getControler();
         inicializarVistas();
         configurarBotones();
         cargarEjercicios();

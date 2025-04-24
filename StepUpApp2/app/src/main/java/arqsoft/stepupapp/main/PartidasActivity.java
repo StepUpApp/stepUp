@@ -47,7 +47,7 @@ public class PartidasActivity extends AppCompatActivity implements PartidaAdapte
         setContentView(R.layout.activity_partidas);
 
         // Inicializar el controlador antes de usarlo
-        controlador = Controlador.getInstance();
+        controlador = ((LayerApplication)getApplicationContext()).getControler();
 
         inicializarVistas();
         configurarBotones();

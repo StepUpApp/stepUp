@@ -43,7 +43,7 @@ public class UbicacionesActivity extends AppCompatActivity implements UbicacionA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ubicaciones);
 
-        controlador = Controlador.getInstance();
+        controlador = ((LayerApplication)getApplicationContext()).getControler();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         inicializarVistas();
