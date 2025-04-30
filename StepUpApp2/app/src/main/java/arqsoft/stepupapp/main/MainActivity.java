@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("Aqui","Dentro de activity result");
-     
+
         if (requestCode == 1 && resultCode == RESULT_OK) {
             // Vuelves de UbicacionesActivity, refrescas la ubicación
             Log.d("Aqui","Dentro de sii");

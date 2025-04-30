@@ -33,7 +33,7 @@ public class Controlador {
         crearDatosIniciales();
     }
 
-    public static synchronized Controlador getInstance(UbicacionDAOInterface ubicacionDAO,
+    /*public static synchronized Controlador getInstance(UbicacionDAOInterface ubicacionDAO,
                                                        EjercicioDAOInterface ejercicioDAO,
                                                        PartidaDAOInterface partidaDAO,
                                                        UsuarioDAOInterface usuarioDAO) {
@@ -42,7 +42,9 @@ public class Controlador {
             instance = new Controlador(ubicacionDAO,ejercicioDAO,partidaDAO,usuarioDAO);
         }
         return instance;
-    }
+    }*/
+
+
 
     private void crearDatosIniciales() {
         // Crear ubicaciones comunes
