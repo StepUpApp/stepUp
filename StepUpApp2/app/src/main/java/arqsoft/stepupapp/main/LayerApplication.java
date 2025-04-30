@@ -3,17 +3,9 @@ package arqsoft.stepupapp.main;
 
 import android.app.Application;
 
-import android.os.Bundle;
 import android.os.StrictMode;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import arqsoft.stepupapp.R;
-import arqsoft.stepupapp.controlador.Controlador;
+import arqsoft.stepupapp.servicio.Controlador;
 import dao.EjercicioDAO;
 import dao.PartidaDAO;
 import dao.UbicacionDAO;
@@ -41,7 +33,7 @@ public class LayerApplication extends Application {
         ejercicioDAO = new EjercicioDAO();
         partidaDAO = new PartidaDAO();
         usuarioDAO = new UsuarioDAO();
-        controlador = Controlador.getInstance(ubicacionDAO, ejercicioDAO, partidaDAO, usuarioDAO);
+        controlador = new Controlador(ubicacionDAO, ejercicioDAO, partidaDAO, usuarioDAO);
 
     }
     public Controlador getControler(){

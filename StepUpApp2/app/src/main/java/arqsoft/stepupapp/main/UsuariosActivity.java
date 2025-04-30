@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import arqsoft.stepupapp.R;
 import arqsoft.stepupapp.adapter.UsuarioAdapter;
-import arqsoft.stepupapp.controlador.Controlador;
+import arqsoft.stepupapp.servicio.Controlador;
 import modelo.Usuario;
 
 public class UsuariosActivity extends AppCompatActivity implements UsuarioAdapter.OnItemClickListener {

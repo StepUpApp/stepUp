@@ -10,7 +10,6 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
@@ -34,7 +33,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import arqsoft.stepupapp.R;
-import arqsoft.stepupapp.controlador.Controlador;
+import arqsoft.stepupapp.servicio.Controlador;
 import modelo.Partida;
 import modelo.Ubicacion;
 

@@ -2,7 +2,6 @@ package arqsoft.stepupapp.main;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.google.android.gms.location.LocationServices;
 import java.util.List;
 import arqsoft.stepupapp.R;
 import arqsoft.stepupapp.adapter.UbicacionAdapter;
-import arqsoft.stepupapp.controlador.Controlador;
+import arqsoft.stepupapp.servicio.Controlador;
 import modelo.Ubicacion;
 
 public class UbicacionesActivity extends AppCompatActivity implements UbicacionAdapter.OnItemClickListener {

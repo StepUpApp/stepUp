@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import arqsoft.stepupapp.R;
 import arqsoft.stepupapp.adapter.EjercicioAdapter;
-import arqsoft.stepupapp.controlador.Controlador;
+import arqsoft.stepupapp.servicio.Controlador;
 import modelo.Ejercicio;
-import modelo.Partida;
-import modelo.Usuario;
 
 public class EjerciciosActivity extends AppCompatActivity implements EjercicioAdapter.OnItemClickListener {
 

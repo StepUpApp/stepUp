@@ -17,7 +17,7 @@ import java.util.List;
 
 import arqsoft.stepupapp.R;
 import arqsoft.stepupapp.adapter.PartidaAdapter;
-import arqsoft.stepupapp.controlador.Controlador;
+import arqsoft.stepupapp.servicio.Controlador;
 import modelo.Ejercicio;
 import modelo.Partida;
 import modelo.Ubicacion;
