@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StepUpApp</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="app_logo">Logo de la aplicación</string>
+</resources>

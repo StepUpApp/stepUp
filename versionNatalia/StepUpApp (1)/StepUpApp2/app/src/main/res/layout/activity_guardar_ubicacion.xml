@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.GuardarUbicacionActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#014553"
+        android:elevation="4dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Contenedor para alinear elementos correctamente -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guardar Ubicación"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Icono a la derecha -->
+            <ImageView
+                android:id="@+id/iconDerecha"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:src="@drawable/logotipo" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <!-- Label Latitud -->
+    <TextView
+        android:id="@+id/textViewLatitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Latitud"
+        android:textColor="#757575"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myToolbar" />
+
+    <!-- EditText Latitud -->
+    <EditText
+        android:id="@+id/etLatitud"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Latitud"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewLatitud" />
+
+    <!-- Label Longitud -->
+    <TextView
+        android:id="@+id/textViewLongitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Longitud"
+        android:textColor="#757575"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etLatitud" />
+
+    <!-- EditText Longitud -->
+    <EditText
+        android:id="@+id/etLongitud"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Longitud"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewLongitud" />
+
+    <!-- Label Nombre -->
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Nombre"
+        android:textColor="#757575"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etLongitud" />
+
+    <!-- EditText Nombre Ubicación -->
+    <EditText
+        android:id="@+id/editTextNombreUbicacion"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Nombre de Ubicación"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewNombre" />
+
+    <!-- Imagen -->
+
+    <!-- Botón cámara -->
+
+    <!-- Botón Guardar Ubicación -->
+
+    <ImageView
+        android:id="@+id/imageViewUbicacion"
+        android:layout_width="268dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/paisaje"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNombreUbicacion" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCamera"
+        android:layout_width="40dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="192dp"
+        android:background="#FFFFFF"
+        android:contentDescription="Abrir cámara"
+        android:foregroundTint="#FFFFFF"
+        android:src="@drawable/anadir"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="@id/imageViewUbicacion"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/imageViewUbicacion"
+        app:layout_constraintTop_toBottomOf="@id/editTextNombreUbicacion" />
+
+    <Button
+        android:id="@+id/btnGuardarUbicacion"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:text="Guardar Ubicación"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCamera" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
