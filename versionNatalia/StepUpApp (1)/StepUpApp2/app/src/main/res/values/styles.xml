@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-    <item name="android:textColor">@android:color/white</item>
-    <item name="android:layout_marginStart">16dp</item>
-    </style>
-</resources>

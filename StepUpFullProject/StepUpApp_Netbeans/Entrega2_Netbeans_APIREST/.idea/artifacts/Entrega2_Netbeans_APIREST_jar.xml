@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="Entrega2_Netbeans_APIREST:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Entrega2_Netbeans_APIREST_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Entrega2_Netbeans_APIREST.jar">
+        <element id="module-output" name="Entrega2_Netbeans_APIREST" />
+      </element>
+    </root>
+  </artifact>
+</component>
