@@ -36,9 +36,9 @@ public class RepositoryService {
         return ubicacionRepo.crearUbicacion(ubicacion);
     }
 
-    public List<Ubicacion> listarUbicaciones() {
+    public List<Ubicacion> listarUbicaciones(String usuarioId) {
 
-        return ubicacionRepo.listarUbicaciones();
+        return ubicacionRepo.listarUbicaciones(usuarioId);
     }
 
     public Ubicacion obtenerUbicacion(String objectId) {

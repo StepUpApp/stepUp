@@ -163,7 +163,7 @@ public class RepositoryAuxiliarService {
         });
         System.out.println("\nEstado final:");
         System.out.println("Ejercicios: " + controlador.listarEjercicios().size());
-        System.out.println("Ubicaciones: " + controlador.ubicacionRepo.listarUbicaciones().size());
+        System.out.println("Ubicaciones: " + controlador.ubicacionRepo.listarUbicaciones(null).size());
         System.out.println("Usuarios: " + controlador.listarUsuarios().size());
     }
 }

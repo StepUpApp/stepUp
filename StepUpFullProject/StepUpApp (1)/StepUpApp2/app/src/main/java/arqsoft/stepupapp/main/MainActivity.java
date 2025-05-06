@@ -42,6 +42,7 @@ import Business.modelo.*;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String usuarioLogeadoId;
     private static final int REQUEST_LOCATION_PERMISSION = 100;
     private static final int REQUEST_CODE_UBICACIONES = 42;
     private TextView tvUbicacionActual;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Verificar si hay sesión activa
         SharedPreferences prefs = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        usuarioLogeadoId = prefs.getString("objectId", null);
         String username = prefs.getString("username", null);
 
         if (username == null) {
@@ -177,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnUbicacionesRegistradas.setOnClickListener(view -> {
             // Navegar a UbicacionesActivity (ubicaciones registradas)
-            for (Ubicacion u : controlador.listarUbicaciones()) {
+            for (Ubicacion u : controlador.listarUbicaciones(usuarioLogeadoId)) {
                 Log.d("UbicacionRegistrada", "Nombre: " + u.getNombre() + ", lat: " + u.getLatitud() + ", lon: " + u.getLongitud());
             }
             Intent intentUbicaciones = new Intent(MainActivity.this, UbicacionesActivity.class);
@@ -309,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Ubicacion buscarUbicacionRegistrada(double lat, double lng) {
         final double tolerancia = 0.001;
-        for (Ubicacion u : controlador.listarUbicaciones()) {
+        for (Ubicacion u : controlador.listarUbicaciones(usuarioLogeadoId)) {
             if (Math.abs(u.getLatitud() - lat) < tolerancia && Math.abs(u.getLongitud() - lng) < tolerancia) {
                 return u;
             }
@@ -402,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void actualizarUbicacion() {
         // Supongamos que solo quieres mostrar la última ubicación
-        Ubicacion ultima = controlador.listarUbicaciones().get(controlador.listarUbicaciones().size() - 1);
+        Ubicacion ultima = controlador.listarUbicaciones(usuarioLogeadoId).get(controlador.listarUbicaciones(usuarioLogeadoId).size() - 1);
         Log.d("Aqui","Dentro de actualizar");
         Log.d("Aqui",ultima.getNombre());
 

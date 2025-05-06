@@ -63,7 +63,7 @@ public class APIRESTUsuarioRepository implements UsuarioInterface<String> {
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
                     .addHeader("Content-Type", "application/json")
-                    .post(RequestBody.create(MediaType.get("application/json"),jsonUsuario))
+                    .post(RequestBody.create(MediaType.parse("application/json"),jsonUsuario))
                     .build();
 
             Response response = client.newCall(request).execute();

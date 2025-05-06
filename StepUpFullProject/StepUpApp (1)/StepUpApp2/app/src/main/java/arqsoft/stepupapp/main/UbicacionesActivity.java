@@ -3,6 +3,7 @@ package arqsoft.stepupapp.main;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -58,11 +59,15 @@ public class UbicacionesActivity extends AppCompatActivity implements UbicacionA
     private Button btnCrear;
     private Button btnEditar;
     private Button btnEliminar;
+    private String usuarioLogeadoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ubicaciones);
+
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        usuarioLogeadoId = prefs.getString("objectId", null);
 
         controlador = ((LayerApplication) getApplicationContext()).getControler();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -108,7 +113,7 @@ public class UbicacionesActivity extends AppCompatActivity implements UbicacionA
     }
 
     private void cargarUbicaciones() {
-        List<Ubicacion> ubicaciones = controlador.listarUbicaciones();
+        List<Ubicacion> ubicaciones = controlador.listarUbicaciones(usuarioLogeadoId);
         adapter = new UbicacionAdapter(ubicaciones, this);
         recyclerView.setAdapter(adapter);
     }
@@ -400,7 +405,7 @@ public class UbicacionesActivity extends AppCompatActivity implements UbicacionA
     @Override
     public void onItemClick(Ubicacion ubicacion) {
         ubicacionSeleccionada = ubicacion;
-        adapter.setSelectedPosition(controlador.listarUbicaciones().indexOf(ubicacion));
+        adapter.setSelectedPosition(controlador.listarUbicaciones(usuarioLogeadoId).indexOf(ubicacion));
         habilitarBotones(true);
     }
 

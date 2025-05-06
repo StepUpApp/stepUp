@@ -3,6 +3,8 @@ package DataAccess.repository;
 import okhttp3.*;
 import com.google.gson.*;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -21,11 +23,38 @@ public class APIRESTUbicacionRepository implements UbicacionInterface<String> {
 
 
     @Override
-    public List<Ubicacion> listarUbicaciones() {
+    public List<Ubicacion> listarUbicaciones(String usuarioId) {
+        final String API_URL = "https://parseapi.back4app.com/classes/Ubicacion";
+        final String APPLICATION_ID = "Ww26DWeZkJxPzEn6GHA2kQMY2Vyi4PXK6rZgpJj2";
+        final String REST_API_KEY = "RQcngHQ6GtBRHXF2RoHrQYwZDjqhhBTDwiOU5MPb";
+        final Gson gson = new Gson();
+        OkHttpClient client = new OkHttpClient();
         List<Ubicacion> ubicaciones = new ArrayList<>();
         try {
+            JsonObject whereObject = new JsonObject();
+            JsonArray orArray = new JsonArray();
+
+            // Primera condición: usuarioId coincide
+            JsonObject condition1 = new JsonObject();
+            condition1.addProperty("usuarioId", usuarioId);
+            orArray.add(condition1);
+
+            // Segunda condición: no existe usuarioId
+            JsonObject condition2 = new JsonObject();
+            JsonObject existsCondition = new JsonObject();
+            existsCondition.addProperty("$exists", false);
+            condition2.add("usuarioId", existsCondition);
+            orArray.add(condition2);
+
+            // Poner el $or
+            whereObject.add("$or", orArray);
+
+            // Codificar la consulta en la URL
+            String whereParam = URLEncoder.encode(whereObject.toString(), StandardCharsets.UTF_8.name());
+            String url = API_URL + "?where=" + whereParam;
+
             Request request = new Request.Builder()
-                    .url(API_URL)
+                    .url(url)
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
                     .addHeader("Content-Type", "application/json")
@@ -33,12 +62,12 @@ public class APIRESTUbicacionRepository implements UbicacionInterface<String> {
                     .build();
 
             Response response = client.newCall(request).execute();
-            
+
             if (response.code() == 200) {
                 String responseJson = response.body().string();
                 JsonObject jsonObject = gson.fromJson(responseJson, JsonObject.class);
                 JsonArray results = jsonObject.getAsJsonArray("results");
-                
+
                 Type listType = new TypeToken<ArrayList<Ubicacion>>(){}.getType();
                 ubicaciones = gson.fromJson(results, listType);
             }
@@ -58,7 +87,7 @@ public class APIRESTUbicacionRepository implements UbicacionInterface<String> {
                     .url(API_URL)
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
-                    .post(RequestBody.create(MediaType.get("application/json"), jsonUbicacion))
+                    .post(RequestBody.create(MediaType.parse("application/json"), jsonUbicacion))
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -115,7 +144,7 @@ public class APIRESTUbicacionRepository implements UbicacionInterface<String> {
                     .url(API_URL + "/" + ubicacion.getObjectId())
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
-                    .put(RequestBody.create(MediaType.get("application/json"), jsonUbicacion))
+                    .put(RequestBody.create(MediaType.parse("application/json"), jsonUbicacion))
                     .build();
 
             Response response = client.newCall(request).execute();

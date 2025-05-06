@@ -9,6 +9,7 @@ public class Ubicacion {
     private double latitud;
     private double longitud;
     private String imagen;
+    private String usuarioId = null;
 
     public Ubicacion(String nombre, double latitud, double longitud) {
         this.nombre = nombre;
@@ -17,12 +18,22 @@ public class Ubicacion {
         this.ubicacionId = contadorId++;
     }
     
-    public Ubicacion(String nombre, double latitud, double longitud, String imagen) {
+    public Ubicacion(String nombre, double latitud, double longitud, String imagen, String usuarioId) {
         this.nombre = nombre;
         this.latitud = latitud;
         this.longitud = longitud;
         this.ubicacionId = contadorId++;
         this.imagen = imagen;
+        this.usuarioId = usuarioId;
+    }
+
+
+    public String getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
     }
     
     public String getObjectId() {

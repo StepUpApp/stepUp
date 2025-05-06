@@ -1,6 +1,7 @@
 package arqsoft.stepupapp.main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -35,9 +36,14 @@ public class GuardarUbicacionActivity extends AppCompatActivity {
     private EditText etLatitud, etLongitud;
     private Button btnGuardarUbicacion;
     private EditText editTextNombreUbicacion;
+    private String usuarioLogeadoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        usuarioLogeadoId = prefs.getString("objectId", null);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guardar_ubicacion);
 
@@ -89,7 +95,7 @@ public class GuardarUbicacionActivity extends AppCompatActivity {
             guardarImagenEnPrivado(imageFileName);
 
             // Crear la ubicación
-            Ubicacion nuevaUbicacion = new Ubicacion(nombre, lat, lon, imageFileName);
+            Ubicacion nuevaUbicacion = new Ubicacion(nombre, lat, lon, imageFileName,usuarioLogeadoId);
             ((LayerApplication)getApplicationContext()).getControler().crearUbicacion(nuevaUbicacion);
 
             Toast.makeText(this, "Ubicación guardada con éxito", Toast.LENGTH_SHORT).show();

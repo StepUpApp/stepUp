@@ -57,7 +57,7 @@ public class APIRESTEjercicioRepository implements EjercicioInterface<String> {
                     .url(API_URL)
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
-                    .post(RequestBody.create(MediaType.get("application/json"), jsonEjercicio))
+                    .post(RequestBody.create(MediaType.parse("application/json"), jsonEjercicio))
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -104,7 +104,7 @@ public class APIRESTEjercicioRepository implements EjercicioInterface<String> {
                     .url(API_URL + "/" + ejercicio.getObjectId())
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
-                    .put(RequestBody.create(MediaType.get("application/json"), jsonEjercicio))
+                    .put(RequestBody.create(MediaType.parse("application/json"), jsonEjercicio))
                     .build();
 
             Response response = client.newCall(request).execute();

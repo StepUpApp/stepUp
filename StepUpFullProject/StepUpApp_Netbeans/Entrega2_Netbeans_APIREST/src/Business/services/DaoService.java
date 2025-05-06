@@ -61,7 +61,7 @@ public class DaoService {
         daoService.crearUbicacion("Parque Central", 40.7128, -74.006);
         daoService.crearUbicacion("Plaza Mayor", 41.6528, -4.7247);
         System.out.println("Lista de ubicaciones:");
-        List<Ubicacion> ubicaciones = daoService.listarUbicaciones();
+        List<Ubicacion> ubicaciones = daoService.listarUbicaciones(null);
         Iterator var10 = ubicaciones.iterator();
 
         while(var10.hasNext()) {
@@ -108,8 +108,8 @@ public class DaoService {
         this.ubicacionDAO.crearUbicacion(ubicacion);
     }
 
-    public List<Ubicacion> listarUbicaciones() {
-        return this.ubicacionDAO.listarUbicaciones();
+    public List<Ubicacion> listarUbicaciones(String usuarioId) {
+        return this.ubicacionDAO.listarUbicaciones(usuarioId);
     }
 
     public void calcularEjercicios(long tiempoSentado, int id) {

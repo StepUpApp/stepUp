@@ -31,7 +31,7 @@ public class UbicacionDAO implements UbicacionInterface<Integer> {
     }
 
     @Override
-    public List<Ubicacion> listarUbicaciones() {
+    public List<Ubicacion> listarUbicaciones(String usuarioId) {
         return ubicaciones;
     }
 

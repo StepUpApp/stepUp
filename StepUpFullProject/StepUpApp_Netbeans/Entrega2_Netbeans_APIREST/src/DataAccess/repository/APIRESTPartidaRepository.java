@@ -58,7 +58,7 @@ public class APIRESTPartidaRepository implements PartidaInterface<String> {
                     .url(API_URL)
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
-                    .post(RequestBody.create(MediaType.get("application/json"), jsonPartida))
+                    .post(RequestBody.create(MediaType.parse("application/json"), jsonPartida))
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -104,7 +104,7 @@ public class APIRESTPartidaRepository implements PartidaInterface<String> {
                     .url(API_URL + "/" + partida.getObjectId())
                     .addHeader("X-Parse-Application-Id", APPLICATION_ID)
                     .addHeader("X-Parse-REST-API-Key", REST_API_KEY)
-                    .put(RequestBody.create(MediaType.get("application/json"), jsonPartida))
+                    .put(RequestBody.create(MediaType.parse("application/json"), jsonPartida))
                     .build();
 
             Response response = client.newCall(request).execute();

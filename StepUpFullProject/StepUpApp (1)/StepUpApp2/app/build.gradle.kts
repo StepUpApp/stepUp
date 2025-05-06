@@ -42,7 +42,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     //implementation (files("libs\\Entrega2_Netbeans_APIREST.jar"))
-    implementation(files("src\\main\\java\\arqsoft\\lib\\Entrega2_Netbeans_APIREST.jar"))
+    implementation(files("src\\main\\java\\arqsoft\\lib\\Netbeans_APIREST.jar"))
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)

@@ -115,7 +115,7 @@ public class MainFrame extends JFrame {
     }
 
     private void listarUbicaciones() {
-        List<Ubicacion> ubicaciones = controlador.listarUbicaciones();
+        List<Ubicacion> ubicaciones = controlador.listarUbicaciones(null);
         String[] columnNames = {"ID", "Nombre", "Latitud", "Longitud"};
         Object[][] data = new Object[ubicaciones.size()][4];
 
@@ -133,7 +133,7 @@ public class MainFrame extends JFrame {
     }
 
     private void editarUbicacion() {
-        List<Ubicacion> ubicaciones = controlador.listarUbicaciones();
+        List<Ubicacion> ubicaciones = controlador.listarUbicaciones(null);
         if(ubicaciones.isEmpty()){
             JOptionPane.showMessageDialog(this, "No hay ubicaciones para editar");
             return;
@@ -182,7 +182,7 @@ public class MainFrame extends JFrame {
     }
 
     private void eliminarUbicacion() {
-        List<Ubicacion> ubicaciones = controlador.listarUbicaciones();
+        List<Ubicacion> ubicaciones = controlador.listarUbicaciones(null);
         if(ubicaciones.isEmpty()){
             JOptionPane.showMessageDialog(this, "No hay ubicaciones para eliminar");
             return;
@@ -473,7 +473,7 @@ public class MainFrame extends JFrame {
     }
 
     private void iniciarPartida() {
-        List<Ubicacion> ubicaciones = controlador.listarUbicaciones();
+        List<Ubicacion> ubicaciones = controlador.listarUbicaciones(null);
         if(ubicaciones.isEmpty()){
             JOptionPane.showMessageDialog(this, "Primero crea una ubicación");
             return;

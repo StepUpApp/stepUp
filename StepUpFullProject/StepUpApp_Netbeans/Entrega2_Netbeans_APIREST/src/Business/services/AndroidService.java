@@ -37,9 +37,9 @@ public class AndroidService {
     private void crearDatosIniciales() {
         // Crear ubicaciones comunes
         List<Ubicacion> ubicaciones = Arrays.asList(
-                new Ubicacion("Aulario", 42.8003049, -1.6367728, "aulario.jpeg"),
+                new Ubicacion("Aulario", 42.8003049, -1.6367728, "aulario.jpeg",null),
                 // new Ubicacion("Casa", 42.7851134, -1.6175174, "casa.jpg"),
-                new Ubicacion("Biblioteca", 42.7992792, -1.6354724, "biblioteca.jpg"),
+                new Ubicacion("Biblioteca", 42.7992792, -1.6354724, "biblioteca.jpg",null),
                 new Ubicacion("Edificio Los Pinos", 42.8000765, -1.6341928)
         );
 
@@ -76,8 +76,8 @@ public class AndroidService {
         ubicacionDAO.crearUbicacion(ubicacion);
     }
 
-    public List<Ubicacion> listarUbicaciones() {
-        return ubicacionDAO.listarUbicaciones();
+    public List<Ubicacion> listarUbicaciones(String usuarioId) {
+        return ubicacionDAO.listarUbicaciones(usuarioId);
     }
 
     // Métodos para CRUD de EjercicioDAO

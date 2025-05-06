@@ -8,7 +8,7 @@ import java.util.List;
 public interface UbicacionInterface<T> {
 
     String crearUbicacion(Ubicacion ubicacion);
-    List<Ubicacion> listarUbicaciones();
+    List<Ubicacion> listarUbicaciones(String usuarioId);
     Boolean editarUbicacion(Ubicacion ubicacion);
     Boolean borrarUbicacion(T id);
     Ubicacion obtenerUbicacionPorID(T id);

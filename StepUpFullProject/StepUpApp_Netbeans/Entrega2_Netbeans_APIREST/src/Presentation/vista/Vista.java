@@ -55,7 +55,7 @@ public class Vista {
     }
 
     public void listarUbicaciones() {
-        List<Ubicacion> ubicaciones = daoService.listarUbicaciones();
+        List<Ubicacion> ubicaciones = daoService.listarUbicaciones(null);
         if(ubicaciones.isEmpty()) {
             System.out.println("No hay ubicaciones registradas");
             return;
@@ -70,7 +70,7 @@ public class Vista {
     }
 
     public void startPartida() {
-        List<Ubicacion> ubicaciones = daoService.listarUbicaciones();
+        List<Ubicacion> ubicaciones = daoService.listarUbicaciones(null);
         if(ubicaciones.isEmpty()) {
             System.out.println("Primero debe crear una ubicación");
             return;
